@@ -353,10 +353,7 @@ class __MultiSelectChipFieldViewState<V>
                                                           18
                                                       : 18),
                                         )
-                                      : Text(
-                                          "Select",
-                                          style: widget.searchTextStyle,
-                                        ),
+                                      : Text("Select"),
                                 ),
                           widget.searchable != null && widget.searchable!
                               ? IconButton(
