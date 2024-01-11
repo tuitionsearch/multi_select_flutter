@@ -100,6 +100,8 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
   /// Whether the user can dismiss the widget by tapping outside
   final bool isDismissible;
 
+  final bool isActive;
+
   final AutovalidateMode autovalidateMode;
   final FormFieldValidator<List<V>>? validator;
   final FormFieldSetter<List<V>>? onSaved;
@@ -141,6 +143,7 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
     this.initialValue = const [],
     this.autovalidateMode = AutovalidateMode.disabled,
     this.key,
+    this.isActive = false,
   }) : super(
             key: key,
             onSaved: onSaved,
@@ -180,6 +183,7 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
                 separateSelectedItems: separateSelectedItems,
                 checkColor: checkColor,
                 isDismissible: isDismissible,
+                isFieldActive: isActive,
               );
               return _MultiSelectDialogFieldView<V>._withState(field, state);
             });
@@ -217,6 +221,7 @@ class _MultiSelectDialogFieldView<V> extends StatefulWidget {
   final bool separateSelectedItems;
   final Color? checkColor;
   final bool isDismissible;
+  final bool? isFieldActive;
   FormFieldState<List<V>>? state;
 
   _MultiSelectDialogFieldView({
@@ -249,6 +254,7 @@ class _MultiSelectDialogFieldView<V> extends StatefulWidget {
     this.selectedItemsTextStyle,
     this.separateSelectedItems = false,
     this.checkColor,
+    this.isFieldActive,
     required this.isDismissible,
   });
 
@@ -284,6 +290,7 @@ class _MultiSelectDialogFieldView<V> extends StatefulWidget {
         selectedItemsTextStyle = field.selectedItemsTextStyle,
         separateSelectedItems = field.separateSelectedItems,
         checkColor = field.checkColor,
+        isFieldActive = field.isFieldActive,
         isDismissible = field.isDismissible,
         state = state;
 
@@ -423,7 +430,7 @@ class __MultiSelectDialogFieldViewState<V>
       children: <Widget>[
         InkWell(
           onTap: () {
-            _showDialog(context);
+            widget.isFieldActive == true ? _showDialog(context) : null;
           },
           child: Container(
             decoration: widget.state != null
