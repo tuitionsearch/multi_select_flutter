@@ -355,7 +355,7 @@ class __MultiSelectChipFieldViewState<V>
                                         )
                                       : Text(
                                           "Select",
-                                          style: TextStyle(fontSize: 18),
+                                          style: widget.searchTextStyle,
                                         ),
                                 ),
                           widget.searchable != null && widget.searchable!
